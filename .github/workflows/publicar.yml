@@ -1,0 +1,24 @@
+name: Publicar versión para clientes
+
+# Al subir gotv.apk y gotv.json nuevos, crea la versión que la app y Downloader descargan
+# (releases/latest/download/gotv.apk y gotv.json).
+on:
+  push:
+    branches: [main]
+    paths: [gotv.json]
+
+permissions:
+  contents: write
+
+jobs:
+  publicar:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v5
+      - name: Comprobar y publicar
+        env:
+          GH_TOKEN: ${{ github.token }}
+        run: |
+          V=$(jq -r .versionName gotv.json)
+          [ "$(sha256sum gotv.apk | cut -d' ' -f1)" = "$(jq -r .sha256 gotv.json)" ] || { echo "::error::gotv.apk no coincide con gotv.json"; exit 1; }
+          gh release create "v$V" gotv.apk gotv.json --title "GOTV $V" --notes "GOTV $V" --latest
