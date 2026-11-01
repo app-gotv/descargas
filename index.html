@@ -181,7 +181,7 @@ footer{border-top:1px solid var(--linea);padding-block:40px;color:var(--gris);fo
     </div>
     <div class="tele">
       <video id="intro" src="img/promo.mp4" poster="img/promo-poster.webp" autoplay muted loop playsinline preload="auto" aria-label="Vídeo de presentación de GOTV"></video>
-      <button class="sonido" id="sonido" type="button">🔊 Activar sonido</button>
+      <button class="sonido" id="sonido" type="button" hidden>🔊 Activar sonido</button>
     </div>
   </div>
 
@@ -282,6 +282,10 @@ footer{border-top:1px solid var(--linea);padding-block:40px;color:var(--gris);fo
           <p>Abre GOTV, escanea el QR con el móvil y pulsa «Iniciar». La tele entra sola con tu prueba gratis.</p>
         </div>
       </div>
+      <div class="clientes directa" id="descarga-directa" style="margin-top:32px">
+        <p><b>¿Móvil, tablet o tele Android con navegador?</b> Descárgala directamente desde aquí. La primera vez, Android te pedirá permiso para instalar apps desde el navegador: pulsa «Permitir».</p>
+        <a class="boton principal" href="https://github.com/app-gotv/descargas/releases/latest/download/gotv.apk" rel="nofollow">⬇ Descargar GOTV</a>
+      </div>
       <div class="funcion" style="margin-top:56px">
         <div class="texto">
           <h3>Activación sin teclear nada</h3>
@@ -347,15 +351,36 @@ footer{border-top:1px solid var(--linea);padding-block:40px;color:var(--gris);fo
 (function(){
   var reduce = window.matchMedia && matchMedia('(prefers-reduced-motion: reduce)').matches;
   var v = document.getElementById('intro');
-  var b = document.getElementById('sonido');
+  var bs = document.getElementById('sonido');
+  if (v && window.innerWidth * (window.devicePixelRatio || 1) > 1400) { v.src = 'img/promo-1080.mp4'; }
   if (v) {
-    if (reduce) { v.removeAttribute('autoplay'); try { v.pause(); } catch(e){} }
-    else { var p = v.play(); if (p && p.catch) p.catch(function(){}); }
-    if (b) b.addEventListener('click', function(){
+    var conSonido = function(){
+      if (!v.muted) return;
       v.muted = false; v.loop = false; v.currentTime = 0; v.controls = true;
       var q = v.play(); if (q && q.catch) q.catch(function(){});
-      b.hidden = true;
-    });
+      if (bs) bs.hidden = true;
+    };
+    var grande = function(){
+      var f = v.requestFullscreen || v.webkitRequestFullscreen || v.webkitEnterFullscreen;
+      if (f) { try { var r = f.call(v); if (r && r.catch) r.catch(function(){}); } catch(e){} }
+    };
+    if (reduce) { v.removeAttribute('autoplay'); try { v.pause(); } catch(e){} }
+    else {
+      // Primero intenta arrancar CON sonido; si el navegador no deja, arranca en silencio
+      // y el sonido se pone solo con el primer clic, toque o tecla en cualquier parte.
+      v.muted = false; v.loop = false; v.controls = true;
+      var p = v.play();
+      var mudo = function(){
+        v.muted = true; v.loop = true; v.controls = false;
+        var q = v.play(); if (q && q.catch) q.catch(function(){});
+        if (bs) bs.hidden = false;
+        var uno = function(){ conSonido(); ['pointerdown','keydown','touchstart'].forEach(function(t){ document.removeEventListener(t, uno, true); }); };
+        ['pointerdown','keydown','touchstart'].forEach(function(t){ document.addEventListener(t, uno, true); });
+      };
+      if (p && p.then) p.then(function(){ if (v.muted || v.paused) mudo(); else if (bs) bs.hidden = true; }, mudo); else mudo();
+    }
+    if (bs) bs.addEventListener('click', function(){ conSonido(); grande(); });
+    v.addEventListener('dblclick', grande);
   }
 
   var imgs = document.querySelectorAll('#carrusel img'), i = 0;
