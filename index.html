@@ -19,7 +19,7 @@
   --f-display:"Sora",system-ui,-apple-system,"Segoe UI",sans-serif;
   --f-texto:"Sora",system-ui,-apple-system,"Segoe UI",sans-serif;
   --f-codigo:"JetBrains Mono",ui-monospace,"SF Mono",Menlo,monospace;
-  --ancho:1180px;
+  --ancho:2200px;
   color-scheme:dark;
 }
 *{box-sizing:border-box}
@@ -30,7 +30,8 @@ a{color:inherit}
 img,video{max-width:100%;display:block}
 h1,h2,h3{font-family:var(--f-display);text-wrap:balance;margin:0;line-height:1.1}
 p{margin:0}
-.envoltura{max-width:var(--ancho);margin:0 auto;padding-left:max(16px,env(safe-area-inset-left,0px));padding-right:max(16px,env(safe-area-inset-right,0px))}
+.envoltura{max-width:var(--ancho);margin:0 auto;padding-left:max(clamp(16px,4vw,80px),env(safe-area-inset-left,0px));padding-right:max(clamp(16px,4vw,80px),env(safe-area-inset-right,0px))}
+@media (min-width:901px){.portada{min-height:calc(100svh - 72px)}}
 :focus-visible{outline:2px solid var(--neon);outline-offset:3px;border-radius:6px}
 
 /* Botones: copian los "pill" de la app (borde neón al enfocar) */
@@ -53,7 +54,7 @@ header{position:sticky;top:env(safe-area-inset-top,0px);z-index:20;background:rg
 .portada{padding-block:64px 40px;display:grid;grid-template-columns:1fr 1.15fr;gap:48px;align-items:center}
 .portada>*{min-width:0}
 .etiqueta{font-size:.78rem;letter-spacing:.14em;text-transform:uppercase;color:var(--neon);font-weight:600}
-.portada h1{font-size:clamp(2.2rem,5vw,3.6rem);font-weight:800;letter-spacing:-.02em;margin-top:14px}
+.portada h1{font-size:clamp(2.2rem,4.2vw,5.2rem);font-weight:800;letter-spacing:-.02em;margin-top:14px}
 .portada h1 em{font-style:normal;color:var(--neon)}
 .portada .entradilla{color:var(--gris);font-size:1.12rem;margin-top:18px;max-width:34em}
 .acciones{display:flex;flex-wrap:wrap;gap:12px;margin-top:28px}
