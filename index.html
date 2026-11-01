@@ -120,7 +120,7 @@ section{padding-block:88px}
 @media (max-width:900px){.pasos{grid-template-columns:1fr}}
 
 /* Planes */
-.planes{display:grid;grid-template-columns:repeat(3,1fr);gap:16px;margin-top:48px}
+.planes{display:grid;grid-template-columns:minmax(0,420px);gap:16px;margin-top:48px}
 .plan{border:1px solid var(--linea);border-radius:16px;padding:26px;display:flex;flex-direction:column;gap:6px;background:var(--panel);min-width:0}
 .plan .dur{color:var(--gris);font-size:.9rem}
 .plan .precio{font-size:2rem;font-weight:800;font-variant-numeric:tabular-nums}
@@ -159,7 +159,7 @@ footer{border-top:1px solid var(--linea);padding-block:40px;color:var(--gris);fo
     <nav aria-label="Secciones">
       <a href="#funciones">Qué hace</a>
       <a href="#instalar">Instalar</a>
-      <a href="#planes">Planes</a>
+      <a href="#planes">Precio</a>
       <a href="#preguntas">Preguntas</a>
     </nav>
     <a class="boton principal" href="#instalar">Pruébala gratis</a>
@@ -294,17 +294,15 @@ footer{border-top:1px solid var(--linea);padding-block:40px;color:var(--gris);fo
   <section id="planes">
     <div class="envoltura">
       <div class="titulo-seccion">
-        <span class="etiqueta">Planes</span>
-        <h2>Pruébala gratis. Quédatela si te gusta.</h2>
-        <p>La licencia va en tu aparato y no caduca por cambiar de wifi o de casa.</p>
+        <span class="etiqueta">Precio</span>
+        <h2>GOTV es gratis.</h2>
+        <p>Sin suscripciones, sin pagos dentro de la app y sin tarjeta. Descárgala, actívala y listo.</p>
       </div>
       <div class="planes">
-        <div class="plan"><span class="dur">Prueba</span><span class="precio">Gratis</span><span class="detalle">7 días, sin tarjeta</span></div>
-        <div class="plan"><span class="dur">1 año</span><span class="precio">6,99 €</span><span class="detalle">1 aparato</span></div>
-        <div class="plan destacado"><span class="dur">Para siempre · el mejor precio</span><span class="precio">12,99 €</span><span class="detalle">1 aparato · un solo pago</span></div>
+        <div class="plan destacado"><span class="dur">App GOTV</span><span class="precio">Gratis</span><span class="detalle">Fire TV, Android TV, móviles y tablets Android</span></div>
       </div>
       <div class="clientes" id="clientes">
-        <p><b>¿Tienes un código de cliente?</b> Si te han dado acceso a GOTV, la app te sale totalmente gratis. Instálala y actívala con tu código.</p>
+        <p><b>¿Necesitas ayuda?</b> Si tienes dudas al instalarla o activarla, escríbenos y te ayudamos.</p>
         <a class="boton" href="https://t.me/GOSOPORTE" target="_blank" rel="noopener">Hablar con soporte</a>
       </div>
     </div>
@@ -319,7 +317,7 @@ footer{border-top:1px solid var(--linea);padding-block:40px;color:var(--gris);fo
       <div class="preguntas">
         <details><summary>¿GOTV trae canales?</summary><p>No. GOTV es un reproductor: no incluye ni vende canales, películas ni series. Ves la lista que ya tienes (Xtream Codes o M3U) con una app más rápida y cómoda.</p></details>
         <details><summary>¿En qué aparatos funciona?</summary><p>Fire TV Stick (todos los modelos), Fire TV Cube, teles con Android TV o Google TV y móviles o tablets Android. En iPhone, LG o Samsung no se puede instalar: para esas teles te recomendamos un Fire TV Stick.</p></details>
-        <details><summary>¿Tengo que dar mis datos o una tarjeta para probarla?</summary><p>No. La prueba gratis dura 7 días y se activa desde la app escaneando un QR. No pedimos tarjeta.</p></details>
+        <details><summary>¿Cuánto cuesta?</summary><p>Nada. GOTV es gratis: no tiene suscripción ni pagos dentro de la app, y no pedimos tarjeta.</p></details>
         <details><summary>¿Tengo que configurar la calidad?</summary><p>No. GOTV elige sola la mejor versión de cada canal para tu aparato y tu conexión, y cambia sin que tengas que tocar nada.</p></details>
         <details><summary>¿Qué pasa si cambio de wifi o me mudo?</summary><p>Nada. La licencia va unida a tu aparato, no a tu conexión.</p></details>
         <details><summary>¿Cómo se actualiza?</summary><p>GOTV te avisa cuando hay una versión nueva y se instala con un clic. Nunca te interrumpe mientras ves un canal.</p></details>
