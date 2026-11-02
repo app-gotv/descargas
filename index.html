@@ -128,6 +128,13 @@ section{padding-block:88px}
 .plan .detalle{color:var(--gris);font-size:.88rem;margin-top:4px}
 .plan.destacado{border-color:var(--neon);box-shadow:0 0 0 4px var(--neon-suave)}
 .plan.destacado .dur{color:var(--neon)}
+.aparatos{display:flex;flex-wrap:wrap;gap:10px;margin-top:36px}
+.aparatos button{font:600 .95rem inherit;font-family:inherit;padding:.7em 1.2em;border-radius:999px;border:1.5px solid var(--linea);background:var(--panel);color:var(--texto);cursor:pointer;transition:border-color .2s,box-shadow .2s}
+.aparatos button:hover{border-color:var(--neon)}
+.aparatos button[aria-selected="true"]{background:var(--neon);color:var(--noche);border-color:var(--neon);box-shadow:0 0 22px rgba(234,255,0,.35)}
+.panel-ap .pasos{margin-top:28px}
+.panel-ap .clientes{margin-top:28px}
+.panel-ap[hidden]{display:none}
 .clientes{margin-top:24px;display:flex;flex-wrap:wrap;gap:16px 24px;align-items:center;justify-content:space-between;border:1px dashed rgba(234,255,0,.5);border-radius:16px;padding:22px 26px}
 .clientes p{max-width:40em}
 .clientes b{color:var(--neon)}
@@ -258,34 +265,72 @@ footer{border-top:1px solid var(--linea);padding-block:40px;color:var(--gris);fo
     <div class="envoltura">
       <div class="titulo-seccion">
         <span class="etiqueta">Instalar y probar gratis</span>
-        <h2>Tres pasos con el mando.</h2>
-        <p>Funciona en cualquier Fire TV Stick, Fire TV Cube y tele con Android TV o Google TV.</p>
+        <h2>¿Dónde lo vas a ver?</h2>
+        <p>Elige tu aparato y te decimos cómo instalarla.</p>
       </div>
-      <div class="pasos">
-        <div class="paso">
-          <span class="num">PASO 1</span>
-          <h3>Instala Downloader</h3>
-          <p>En tu Fire TV, busca «Downloader» en la tienda de apps y descárgala. Es gratis.</p>
-        </div>
-        <div class="paso">
-          <span class="num">PASO 2</span>
-          <h3>Escribe este código</h3>
-          <p>Abre Downloader, escribe el código y pulsa «Go». GOTV se descarga e instala.</p>
-          <div class="codigo">
-            <div class="cifras" aria-label="Código 6746441"><span>6</span><span>7</span><span>4</span><span>6</span><span>4</span><span>4</span><span>1</span></div>
-            <button class="boton copiar" id="copiar" type="button">Copiar</button>
+      <div class="aparatos" role="tablist" aria-label="Elige tu aparato">
+        <button type="button" role="tab" data-ap="firetv" data-panel="tele">Fire TV Stick</button>
+        <button type="button" role="tab" data-ap="tvbox" data-panel="tele">TV Box Android</button>
+        <button type="button" role="tab" data-ap="androidtv" data-panel="tele">Android TV / Google TV</button>
+        <button type="button" role="tab" data-ap="movil" data-panel="movil">Móvil o tablet Android</button>
+        <button type="button" role="tab" data-ap="iphone" data-panel="otros" data-nombre="un iPhone o iPad">iPhone / iPad</button>
+        <button type="button" role="tab" data-ap="lg" data-panel="otros" data-nombre="una tele LG">Tele LG</button>
+        <button type="button" role="tab" data-ap="samsung" data-panel="otros" data-nombre="una tele Samsung">Tele Samsung</button>
+        <button type="button" role="tab" data-ap="otro" data-panel="otros" data-nombre="otro aparato">Otro aparato</button>
+      </div>
+
+      <div class="panel-ap" id="panel-tele" role="tabpanel">
+        <div class="pasos">
+          <div class="paso">
+            <span class="num">PASO 1</span>
+            <h3>Instala Downloader</h3>
+            <p>Busca «Downloader» en la tienda de apps de tu aparato (Amazon o Google Play) y descárgala. Es gratis.</p>
+          </div>
+          <div class="paso">
+            <span class="num">PASO 2</span>
+            <h3>Escribe este código</h3>
+            <p>Abre Downloader, escribe el código y pulsa «Go». GOTV se descarga e instala.</p>
+            <div class="codigo">
+              <div class="cifras" aria-label="Código 6746441"><span>6</span><span>7</span><span>4</span><span>6</span><span>4</span><span>4</span><span>1</span></div>
+              <button class="boton copiar" id="copiar" type="button">Copiar</button>
+            </div>
+          </div>
+          <div class="paso">
+            <span class="num">PASO 3</span>
+            <h3>Escanea el QR</h3>
+            <p>Abre GOTV, escanea el QR con el móvil y pulsa «Iniciar». La tele entra sola con tu prueba gratis.</p>
           </div>
         </div>
-        <div class="paso">
-          <span class="num">PASO 3</span>
-          <h3>Escanea el QR</h3>
-          <p>Abre GOTV, escanea el QR con el móvil y pulsa «Iniciar». La tele entra sola con tu prueba gratis.</p>
+      </div>
+
+      <div class="panel-ap" id="panel-movil" role="tabpanel" hidden>
+        <div class="pasos">
+          <div class="paso">
+            <span class="num">PASO 1</span>
+            <h3>Descárgala</h3>
+            <p>Pulsa el botón desde tu móvil o tablet. Se baja siempre la última versión.</p>
+            <a class="boton principal" href="https://github.com/app-gotv/descargas/releases/latest/download/gotv.apk" rel="nofollow" style="align-self:flex-start">⬇ Descargar GOTV</a>
+          </div>
+          <div class="paso">
+            <span class="num">PASO 2</span>
+            <h3>Permite la instalación</h3>
+            <p>La primera vez, Android te pide permiso para instalar apps desde el navegador. Pulsa «Ajustes» y luego «Permitir».</p>
+          </div>
+          <div class="paso">
+            <span class="num">PASO 3</span>
+            <h3>Abre GOTV</h3>
+            <p>Abre la app y sigue los pasos de la pantalla. Si te atascas, te ayudamos por Telegram.</p>
+          </div>
         </div>
       </div>
-      <div class="clientes directa" id="descarga-directa" style="margin-top:32px">
-        <p><b>¿Móvil, tablet o tele Android con navegador?</b> Descárgala directamente desde aquí. La primera vez, Android te pedirá permiso para instalar apps desde el navegador: pulsa «Permitir».</p>
-        <a class="boton principal" href="https://github.com/app-gotv/descargas/releases/latest/download/gotv.apk" rel="nofollow">⬇ Descargar GOTV</a>
+
+      <div class="panel-ap" id="panel-otros" role="tabpanel" hidden>
+        <div class="clientes ayuda-ap">
+          <p><b>¿Lo quieres en <span id="ap-nombre">tu aparato</span>?</b> Pulsa el botón y te enseñamos cómo dejarlo instalado en el tuyo.</p>
+          <a class="boton principal" id="ap-soporte" href="https://t.me/GoSoporte" target="_blank" rel="noopener">Pulsa aquí para instalarlo en tu dispositivo</a>
+        </div>
       </div>
+
       <div class="funcion" style="margin-top:56px">
         <div class="texto">
           <h3>Activación sin teclear nada</h3>
@@ -399,5 +444,33 @@ footer{border-top:1px solid var(--linea);padding-block:40px;color:var(--gris);fo
       navigator.clipboard.writeText('6746441').then(hecho, function(){ b.textContent = '6746441'; });
     } catch(e) { b.textContent = '6746441'; }
   });
+
+  // Selector de aparato en «Instalar»
+  (function(){
+    var bots = document.querySelectorAll('.aparatos button');
+    if (!bots.length) return;
+    var paneles = document.querySelectorAll('.panel-ap');
+    var nombre = document.getElementById('ap-nombre');
+    var sop = document.getElementById('ap-soporte');
+    function elegir(btn){
+      bots.forEach(function(x){ x.setAttribute('aria-selected', x === btn ? 'true' : 'false'); });
+      var p = btn.getAttribute('data-panel');
+      paneles.forEach(function(x){ x.hidden = x.id !== 'panel-' + p; });
+      if (p === 'otros') {
+        var n = btn.getAttribute('data-nombre') || 'otro aparato';
+        if (nombre) nombre.textContent = n;
+        if (sop) sop.href = 'https://t.me/GoSoporte?text=' + encodeURIComponent('Hola, vengo de appgotv.com y quiero instalar GOTV en ' + n + '.');
+      }
+    }
+    bots.forEach(function(x){ x.addEventListener('click', function(){ elegir(x); }); });
+    var ua = navigator.userAgent || '';
+    var ap = 'firetv';
+    if (/iPhone|iPad|iPod/.test(ua) || (/Macintosh/.test(ua) && navigator.maxTouchPoints > 1)) ap = 'iphone';
+    else if (/Web0S|webOS|NetCast/i.test(ua)) ap = 'lg';
+    else if (/Tizen|SMART-TV/i.test(ua)) ap = 'samsung';
+    else if (/AFT/.test(ua)) ap = 'firetv';
+    else if (/Android/.test(ua)) ap = /\bTV\b|BRAVIA|AndroidTV|GoogleTV/i.test(ua) ? 'androidtv' : 'movil';
+    elegir(document.querySelector('.aparatos [data-ap="' + ap + '"]'));
+  })();
 })();
 </script>
