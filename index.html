@@ -79,6 +79,10 @@ header{position:sticky;top:env(safe-area-inset-top,0px);z-index:20;background:rg
 
 section{padding-block:88px}
 .titulo-seccion{max-width:44rem}
+.centrada .titulo-seccion{margin-left:auto;margin-right:auto;text-align:center}
+.centrada .planes{justify-content:center}
+.centrada .plan{text-align:center;align-items:center}
+.centrada .preguntas{max-width:840px;margin-left:auto;margin-right:auto}
 .titulo-seccion h2{font-size:clamp(1.8rem,3.6vw,2.6rem);font-weight:700;margin-top:10px;letter-spacing:-.01em}
 .titulo-seccion p{color:var(--gris);margin-top:14px;font-size:1.05rem}
 
@@ -352,7 +356,7 @@ footer{border-top:1px solid var(--linea);padding-block:40px;color:var(--gris);fo
     </div>
   </section>
 
-  <section id="planes">
+  <section id="planes" class="centrada">
     <div class="envoltura">
       <div class="titulo-seccion">
         <span class="etiqueta">Precio</span>
@@ -362,14 +366,14 @@ footer{border-top:1px solid var(--linea);padding-block:40px;color:var(--gris);fo
       <div class="planes">
         <div class="plan destacado"><span class="dur">App GOTV</span><span class="precio">Gratis</span><span class="detalle">Fire TV, Android TV, móviles y tablets Android</span></div>
       </div>
-      <div class="clientes" id="clientes">
+      <div class="clientes ayuda-ap" id="clientes">
         <p><b>¿Necesitas ayuda?</b> Si tienes dudas al instalarla o activarla, escríbenos y te ayudamos.</p>
         <a class="boton" href="https://t.me/GoSoporte" target="_blank" rel="noopener">Hablar con soporte</a>
       </div>
     </div>
   </section>
 
-  <section id="preguntas" style="padding-top:0">
+  <section id="preguntas" class="centrada" style="padding-top:0">
     <div class="envoltura">
       <div class="titulo-seccion">
         <span class="etiqueta">Preguntas</span>
@@ -377,7 +381,7 @@ footer{border-top:1px solid var(--linea);padding-block:40px;color:var(--gris);fo
       </div>
       <div class="preguntas">
         <details><summary>¿GOTV trae canales?</summary><p>No. GOTV es un reproductor: no incluye ni vende canales, películas ni series. Ves la lista que ya tienes (Xtream Codes o M3U) con una app más rápida y cómoda.</p></details>
-        <details><summary>¿En qué aparatos funciona?</summary><p>Fire TV Stick (todos los modelos), Fire TV Cube, teles con Android TV o Google TV y móviles o tablets Android. En iPhone, LG o Samsung no se puede instalar: para esas teles te recomendamos un Fire TV Stick.</p></details>
+        <details><summary>¿En qué aparatos funciona?</summary><p>Fire TV Stick (todos los modelos), Fire TV Cube, teles con Android TV o Google TV y móviles o tablets Android. En iPhone, LG o Samsung no se instala directamente: elige tu aparato en «Instalar» y te ayudamos a verlo en el tuyo.</p></details>
         <details><summary>¿Cuánto cuesta?</summary><p>Nada. GOTV es gratis: no tiene suscripción ni pagos dentro de la app, y no pedimos tarjeta.</p></details>
         <details><summary>¿Tengo que configurar la calidad?</summary><p>No. GOTV elige sola la mejor versión de cada canal para tu aparato y tu conexión, y cambia sin que tengas que tocar nada.</p></details>
         <details><summary>¿Qué pasa si cambio de wifi o me mudo?</summary><p>Nada. La licencia va unida a tu aparato, no a tu conexión.</p></details>
