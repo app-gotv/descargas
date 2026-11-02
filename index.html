@@ -135,6 +135,8 @@ section{padding-block:88px}
 .panel-ap .pasos{margin-top:28px}
 .panel-ap .clientes{margin-top:28px}
 .panel-ap[hidden]{display:none}
+.sin-telegram{flex-basis:100%;font-size:.88rem;color:var(--gris)}
+.sin-telegram a{color:var(--texto);text-decoration:underline;text-underline-offset:3px}
 .clientes{margin-top:24px;display:flex;flex-wrap:wrap;gap:16px 24px;align-items:center;justify-content:space-between;border:1px dashed rgba(234,255,0,.5);border-radius:16px;padding:22px 26px}
 .clientes p{max-width:40em}
 .clientes b{color:var(--neon)}
@@ -328,6 +330,7 @@ footer{border-top:1px solid var(--linea);padding-block:40px;color:var(--gris);fo
         <div class="clientes ayuda-ap">
           <p><b>¿Lo quieres en <span id="ap-nombre">tu aparato</span>?</b> Pulsa el botón y te enseñamos cómo dejarlo instalado en el tuyo.</p>
           <a class="boton principal" id="ap-soporte" href="https://t.me/GoSoporte" target="_blank" rel="noopener">Pulsa aquí para instalarlo en tu dispositivo</a>
+          <p class="sin-telegram">¿No tienes Telegram? <a id="ap-whatsapp" href="https://wa.me/34644036272" target="_blank" rel="noopener">Escríbenos por WhatsApp</a></p>
         </div>
       </div>
 
@@ -459,7 +462,10 @@ footer{border-top:1px solid var(--linea);padding-block:40px;color:var(--gris);fo
       if (p === 'otros') {
         var n = btn.getAttribute('data-nombre') || 'otro aparato';
         if (nombre) nombre.textContent = n;
-        if (sop) sop.href = 'https://t.me/GoSoporte?text=' + encodeURIComponent('Hola, vengo de appgotv.com y quiero instalar GOTV en ' + n + '.');
+        var msg = encodeURIComponent('Hola, vengo de appgotv.com y quiero instalar GOTV en ' + n + '.');
+        if (sop) sop.href = 'https://t.me/GoSoporte?text=' + msg;
+        var wa = document.getElementById('ap-whatsapp');
+        if (wa) wa.href = 'https://wa.me/34644036272?text=' + msg;
       }
     }
     bots.forEach(function(x){ x.addEventListener('click', function(){ elegir(x); }); });
