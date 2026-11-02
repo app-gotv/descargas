@@ -135,6 +135,10 @@ section{padding-block:88px}
 .panel-ap .pasos{margin-top:28px}
 .panel-ap .clientes{margin-top:28px}
 .panel-ap[hidden]{display:none}
+.detectado{margin-top:28px;display:block;max-width:44em;padding:12px 18px;border-radius:14px;background:var(--neon-suave);border:1px solid rgba(234,255,0,.45);font-size:.95rem}
+.detectado[hidden]{display:none}
+.detectado b{color:var(--neon)}
+.aparatos{scroll-margin-top:100px}
 .sin-telegram{flex-basis:100%;font-size:.88rem;color:var(--gris)}
 .sin-telegram a{color:var(--texto);text-decoration:underline;text-underline-offset:3px}
 .clientes{margin-top:24px;display:flex;flex-wrap:wrap;gap:16px 24px;align-items:center;justify-content:space-between;border:1px dashed rgba(234,255,0,.5);border-radius:16px;padding:22px 26px}
@@ -270,6 +274,7 @@ footer{border-top:1px solid var(--linea);padding-block:40px;color:var(--gris);fo
         <h2>¿Dónde lo vas a ver?</h2>
         <p>Elige tu aparato y te decimos cómo instalarla.</p>
       </div>
+      <p class="detectado" id="detectado" hidden></p>
       <div class="aparatos" role="tablist" aria-label="Elige tu aparato">
         <button type="button" role="tab" data-ap="firetv" data-panel="tele">Fire TV Stick</button>
         <button type="button" role="tab" data-ap="tvbox" data-panel="tele">TV Box Android</button>
@@ -476,6 +481,14 @@ footer{border-top:1px solid var(--linea);padding-block:40px;color:var(--gris);fo
     else if (/Tizen|SMART-TV/i.test(ua)) ap = 'samsung';
     else if (/AFT/.test(ua)) ap = 'firetv';
     else if (/Android/.test(ua)) ap = /\bTV\b|BRAVIA|AndroidTV|GoogleTV/i.test(ua) ? 'androidtv' : 'movil';
+    var NOMBRES = {iphone:'un iPhone o iPad', lg:'una tele LG', samsung:'una tele Samsung', movil:'un móvil o tablet Android', androidtv:'una tele Android', tvfire:'un Fire TV'};
+    var det = /iPhone|iPad|iPod/.test(ua) || (/Macintosh/.test(ua) && navigator.maxTouchPoints > 1) || /Web0S|webOS|NetCast|Tizen|SMART-TV|AFT|Android/i.test(ua);
+    var aviso = document.getElementById('detectado');
+    if (det && aviso) {
+      var nm = /AFT/.test(ua) ? NOMBRES.tvfire : NOMBRES[ap];
+      aviso.innerHTML = 'Acabas de entrar desde <b>' + nm + '</b>. ¿Lo quieres en otro aparato, como la tele? Elige abajo cuál.';
+      aviso.hidden = false;
+    }
     elegir(document.querySelector('.aparatos [data-ap="' + ap + '"]'));
   })();
 })();
